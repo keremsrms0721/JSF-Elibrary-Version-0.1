@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>User Form</title>
+		<style>
+body {
+	background-image: url('images/addBookbackground.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
+</h:head>
+<h:body>
+	<f:event listener="#{adminBean.isAdmin}" type="preRenderView" />
+	<div style="background-color: #82745bb0;color:#fff;position: relative;top: 127px;left: 32%;width: 35%;padding: 50px;border-radius:20px">
+	<h:form>
+		<h:outputLabel style="margin-top:10px;">Book Name</h:outputLabel>
+		<h:inputText style="margin-top:10px;width:100%;padding:10px" value="#{foundBook.bookName}" /> <br/>
+		<h:inputHidden value="#{foundBook.bookId}"/>
+		<h:outputLabel>Book Editor</h:outputLabel>
+		<h:inputText style="margin-top:10px;width:100%;padding:10px" value="#{foundBook.bookEditor}" /> <br/>
+		<br />
+		<h:commandButton style="color:white;background-color:black;width:100%;text-align:center;line-height:0;padding:15px;height:30px;" value="Update" action="#{bookBean.edit(foundBook)}"/>		
+	</h:form>
+	</div>
+</h:body>
+</html>

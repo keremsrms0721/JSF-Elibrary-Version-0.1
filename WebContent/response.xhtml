@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"	
+	xmlns:p="http://primefaces.org/ui"
+	>
+<h:head>
+	<title>User Form</title>
+	
+	<style>
+body {
+	background-image: url('images/responsebackground.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+</style>
+</h:head>
+<h:body>
+	<f:event listener="#{adminBean.isAdmin}" type="preRenderView"/>
+	
+	<h:form>
+	<h:commandLink action="addBook.xhtml?faces-redirect=true" style="color:white;">Add Book</h:commandLink>
+	<br/>
+	<h:commandLink action="#{adminBean.adminLogOut}" style="color:white;">Logout</h:commandLink>
+	<p:dataTable value="#{bookBean.listAllBooks}" var="books" border="1">
+		<p:column>
+			<f:facet name="header">Book Name</f:facet>
+			<h:outputText value="#{books.bookName}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Book Editor</f:facet>
+			<h:outputText value="#{books.bookEditor}" />
+		</p:column>
+		<p:column>
+			<f:facet name="header">Delete</f:facet>
+			<p:commandLink action="#{bookBean.delete(books.bookId)}" value="Delete" style="color:green;"/>
+		</p:column>
+		<p:column>
+			<f:facet name="header">Update</f:facet>
+			<p:commandLink action="#{bookBean.update(books.bookId)}" value="Update" style="color:green;">
+				<f:param name="bookId" value="books.bookId"/>			
+			</p:commandLink>
+		</p:column>
+	</p:dataTable>
+	</h:form>
+	
+	
+</h:body>
+</html>
